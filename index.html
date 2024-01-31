@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>analog clock</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body{
+            background: linear-gradient(to right bottom, #d3d08a, #c0ff62, #429dff, #81ffff);
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .clock{
+            background-color: rgba(255, 255, 255, 0.2);
+            height: 20rem;
+            width: 20rem;
+            border-radius: 50%;
+            box-shadow: 0 0 100px 5px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* backdrop-filter: blur(4px); */
+            position: relative;
+        }
+
+        .aqrabe{
+            border-radius: 50%;
+            height: inherit;
+            width: inherit;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .aqrabe::before{
+            content: '';
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: #fff;
+            border-radius: 50%;
+            box-shadow: 2px 2px 6px 4px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
+
+        .aqrabe div{
+            width: 0.5rem;
+            height: 8rem;
+            position: absolute;
+            bottom: 50%;
+            transform-origin: bottom center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff00;
+            
+        }
+
+        .aqrabe .hour{
+            height: 6rem;
+            padding-bottom: 20px;
+        }
+
+        .aqrabe div span{
+            font-size: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .aqrabe .sec {
+            color: #f00;
+        }
+    </style>
+</head>
+<body>
+    <div class="clock">
+        <div class="aqrabe">
+            <div class="sec">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="min">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="hour">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <script>
+        const hour = document.querySelector('.hour');
+        const min = document.querySelector('.min');
+        const sec = document.querySelector('.sec');
+
+        const hourSpan = document.querySelectorAll('.hour span')
+        const minSpan = document.querySelectorAll('.min span')
+        const secSpan = document.querySelectorAll('.sec span')
+
+        let now = new Date();
+        sec.style.transform = `rotate(${(now.getSeconds()*6)+600}deg)`;
+        min.style.transform = `rotate(${now.getMinutes()*6}deg)`;
+        hour.style.transform = `rotate(${now.getHours()}deg)`;
+
+        function setSpan(spanList, time, deg){
+            spanList.forEach(element => {
+                element.innerText = time
+                element.style.transform = `rotate(${360-deg}deg)`;
+            });
+        }
+
+        function setDate(){
+            const now = new Date();
+            const nowHour = now.getHours();
+            const nowMin = now.getMinutes();
+            const nowSec = now.getSeconds();
+            
+            const secDeg = nowSec * 6
+            const minDeg = nowMin * 6
+            const hourDeg = nowHour * 30
+
+            sec.style.transform = `rotate(${secDeg}deg)`;
+            min.style.transform = `rotate(${minDeg + 0.5}deg)`;
+            hour.style.transform = `rotate(${hourDeg + 0.5}deg)`;
+
+            setSpan(secSpan, nowSec, secDeg)
+            setSpan(minSpan, nowMin, minDeg)
+            setSpan(hourSpan, nowHour, hourDeg)
+            
+        };
+
+        setInterval(setDate, 1000)
+
+    </script>
+</body>
+</html>
