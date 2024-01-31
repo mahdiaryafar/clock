@@ -1,0 +1,78 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background: linear-gradient(to right bottom, #d3d08a, #c0ff62, #429dff, #81ffff);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clock{
+    background-color: rgba(255, 255, 255, 0.2);
+    height: 20rem;
+    width: 20rem;
+    border-radius: 50%;
+    box-shadow: 0 0 100px 5px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* backdrop-filter: blur(4px); */
+    position: relative;
+}
+
+.aqrabe{
+    border-radius: 50%;
+    height: inherit;
+    width: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.aqrabe::before{
+    content: '';
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 2px 2px 6px 4px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+.aqrabe div{
+    width: 0.5rem;
+    height: 8rem;
+    position: absolute;
+    bottom: 50%;
+    transform-origin: bottom center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff00;
+    
+}
+
+.aqrabe .hour{
+    height: 6rem;
+    padding-bottom: 20px;
+}
+
+.aqrabe div span{
+    font-size: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.aqrabe .sec {
+    color: #f00;
+}
